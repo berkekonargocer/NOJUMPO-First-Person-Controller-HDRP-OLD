@@ -45,7 +45,7 @@ namespace Nojumpo
         // ------------------------- UNITY BUILT-IN METHODS ------------------------
         void Update() {
             GetInput();
-
+            
             Sway();
             SwayRotation();
             BobOffset();
