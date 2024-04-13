@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 224.09366, g: 124.35695, b: 86.9347, a: 1}
+  m_IndirectSpecularColor: {r: 224.09366, g: 124.35695, b: 86.93421, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2105,18 +2105,18 @@ MonoBehaviour:
   HeadbobHeight: 1.5
   HeadbobSideMovement: 0.25
   JumpLandIntensity: 2
-  Volume: 5
+  Volume: 10
   jumpSound: {fileID: 0}
   landSound: {fileID: 0}
   footStepSounds: []
   FootstepSMode: 1
   dynamicFootstep:
-    FootstepMaterialMode: 0
+    FootstepMaterialMode: 1
     woodPhysMat: []
     metalAndGlassPhysMat:
     - {fileID: 0}
     grassPhysMat:
-    - {fileID: 13400000, guid: 48bbde3049f29b247a56af17d2b0381f, type: 2}
+    - {fileID: 0}
     dirtAndGravelPhysMat:
     - {fileID: 0}
     rockAndConcretePhysMat:
@@ -2131,9 +2131,7 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 3280967b030fe804a8e7f8c50d02814c, type: 2}
     dirtAndGravelMat: []
     rockAndConcreteMat:
-    - {fileID: 2100000, guid: 71f4c1d7946789e40b3c69f2bd6c2019, type: 2}
-    - {fileID: 2100000, guid: 4570654889a4e1d4994c506880aee629, type: 2}
-    - {fileID: 2100000, guid: 0a33cef6601c7814c8a5966bc71bc498, type: 2}
+    - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
     mudMat: []
     customMat:
     - {fileID: 2100000, guid: 43f9416cd9a45ff448d756279c28d117, type: 2}
@@ -2141,30 +2139,27 @@ MonoBehaviour:
     woodClipSet: []
     metalAndGlassClipSet: []
     grassClipSet:
-    - {fileID: 8300000, guid: e70c5fa5ed6b97f41aa555d63ca56d42, type: 3}
-    - {fileID: 8300000, guid: d3947cf2c6783a447bd0dae10cd8bb21, type: 3}
-    - {fileID: 8300000, guid: 41b975e693999f942b5755a8f054c4ce, type: 3}
-    - {fileID: 8300000, guid: 818617f6fe74a6345a5babff80a756e2, type: 3}
-    - {fileID: 8300000, guid: 2667de89ddda8dc409eaf8f8261d1d8c, type: 3}
-    - {fileID: 8300000, guid: 76909016e12b7b4469602526ddc6a164, type: 3}
-    - {fileID: 8300000, guid: 0533ad72641beb64c84742701ea7fcd4, type: 3}
-    - {fileID: 8300000, guid: 37aa905a30faf0d45a213f924449a6fb, type: 3}
-    - {fileID: 8300000, guid: 5991900ee6498594ab6d0c668e329eb1, type: 3}
-    - {fileID: 8300000, guid: e899671e45e608e4db37f6d6701c35ba, type: 3}
-    - {fileID: 8300000, guid: 01c377cd295d33a4db93c9467d59a6dd, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     dirtAndGravelClipSet: []
     rockAndConcreteClipSet:
-    - {fileID: 8300000, guid: a9e804a8165699a49bceb84d083a34a6, type: 3}
-    - {fileID: 8300000, guid: fead5cfe6593ab64dac60ff7b677fb86, type: 3}
-    - {fileID: 8300000, guid: b129e694a0fa16f498b497481befe169, type: 3}
-    - {fileID: 8300000, guid: a3eb761c67da86e4d95a714d5040e215, type: 3}
-    - {fileID: 8300000, guid: 49a4a47af61a25b4fb37c589359ef09c, type: 3}
-    - {fileID: 8300000, guid: ffeb60b812fdc464499d8bd1c46cd055, type: 3}
-    - {fileID: 8300000, guid: 7b10d52be5966cc49b99c126a03640e5, type: 3}
-    - {fileID: 8300000, guid: fbe1939915c91b74f9eded7665492ef6, type: 3}
-    - {fileID: 8300000, guid: e2f81d653f70254468486696deb5e2d7, type: 3}
-    - {fileID: 8300000, guid: e38fa940edefdd9479e226e6a3d4787e, type: 3}
-    - {fileID: 8300000, guid: 965861ab37dcd9549912eca505055b63, type: 3}
+    - {fileID: 8300000, guid: d207fcdd196e42b4484c5bc973e5de11, type: 3}
+    - {fileID: 8300000, guid: 6886d6da4db95f4479db98db3130d29e, type: 3}
+    - {fileID: 8300000, guid: bf45b350aa121ee4aa5b6829746efc33, type: 3}
+    - {fileID: 8300000, guid: 8c89dddbad6a7c140bcbe41ba3047a05, type: 3}
+    - {fileID: 8300000, guid: d19121d1910984f45b97f75e2fd42560, type: 3}
+    - {fileID: 8300000, guid: 06d3d6f0f3fe1f0458937b1438378b36, type: 3}
+    - {fileID: 8300000, guid: 5c2a21ea726fc894693f86d4a01ec539, type: 3}
+    - {fileID: 8300000, guid: 3b5ff2472123a414ea9375529271abbd, type: 3}
     mudClipSet: []
     customClipSet:
     - {fileID: 8300000, guid: fb6839219f2c6674996d76c7d9626311, type: 3}
