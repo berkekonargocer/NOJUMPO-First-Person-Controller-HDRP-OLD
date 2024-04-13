@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 224.09366, g: 124.35695, b: 86.93421, a: 1}
+  m_IndirectSpecularColor: {r: 224.09366, g: 124.35695, b: 86.9347, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 121888936}
   - component: {fileID: 121888937}
   - component: {fileID: 121888940}
+  - component: {fileID: 121888941}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -288,6 +289,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damping: 0
+--- !u!114 &121888941
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121888935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9beda531928fc40968802117a5d256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RecenterTarget: 0
+  m_VerticalAxis:
+    Value: 0
+    m_SpeedMode: 1
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 1
+    m_MinValue: -70
+    m_MaxValue: 70
+    m_Wrap: 1
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
+  m_VerticalRecentering:
+    m_enabled: 0
+    m_WaitTime: 1
+    m_RecenteringTime: 2
+    m_LegacyHeadingDefinition: -1
+    m_LegacyVelocityFilterStrength: -1
+  m_HorizontalAxis:
+    Value: 0
+    m_SpeedMode: 1
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: -180
+    m_MaxValue: 180
+    m_Wrap: 1
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
+  m_HorizontalRecentering:
+    m_enabled: 0
+    m_WaitTime: 1
+    m_RecenteringTime: 2
+    m_LegacyHeadingDefinition: -1
+    m_LegacyVelocityFilterStrength: -1
+  m_ApplyBeforeBody: 0
 --- !u!1 &157207112
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +838,7 @@ GameObject:
   - component: {fileID: 844803572}
   - component: {fileID: 844803571}
   - component: {fileID: 844803574}
+  - component: {fileID: 844803575}
   m_Layer: 0
   m_Name: Player Virtual Camera
   m_TagString: Untagged
@@ -801,7 +865,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 3853276292031007274}
+  m_Follow: {fileID: 1563780169045103668}
   m_Lens:
     FieldOfView: 75
     OrthographicSize: 5
@@ -837,12 +901,12 @@ Transform:
   m_GameObject: {fileID: 844803570}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.000000059604645, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 121888936}
-  m_Father: {fileID: 1563780169045103668}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &844803574
 MonoBehaviour:
@@ -860,6 +924,24 @@ MonoBehaviour:
   m_Damping: 1
   m_MinFOV: 10
   m_MaxFOV: 75
+--- !u!114 &844803575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844803570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83de7e314400af04f9ebd71e765786db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  njInputReader: {fileID: 11400000, guid: d858b3bba549a33408c6263b973dc4e2, type: 2}
+  maxSpeed: 0
+  acceleratedRotation: 0
+  accelerationTime: 1
+  decelerationTime: 1.5
+  maxRotation: 70
 --- !u!1 &926174468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1567,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 844803572}
   - {fileID: 3853276292031007274}
   m_Father: {fileID: 2142176649032772989}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1981,7 +2062,7 @@ Transform:
   m_GameObject: {fileID: 7149722335629805063}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.00000014354211, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29999995, y: -0.55, z: 0.625}
+  m_LocalPosition: {x: 0.29999995, y: -0.54999995, z: 0.625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2002,9 +2083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nJInputReader: {fileID: 11400000, guid: d858b3bba549a33408c6263b973dc4e2, type: 2}
   playerVirtualCameraTransform: {fileID: 844803572}
-  cameraSensitivity: 50
-  cameraAcceleration: 8
-  lookLimitY: 80
+  verticalLookLimit: 80
   PlayerCanMove: 1
   WalkByDefault: 1
   WalkSpeed: 2
@@ -2348,6 +2427,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 2142176649032772989}
   - {fileID: 157207114}
+  - {fileID: 844803572}
   - {fileID: 432432461}
   - {fileID: 2013410475}
   - {fileID: 1526010990}

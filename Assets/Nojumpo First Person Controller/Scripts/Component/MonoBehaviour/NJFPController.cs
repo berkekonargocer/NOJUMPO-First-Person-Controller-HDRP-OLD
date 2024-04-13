@@ -245,27 +245,30 @@ namespace NOJUMPO.FirstPersonController
         float rotationAmount;
         float verticalRotationAmount;
         void Look() {
-            //transform.rotation *= Quaternion.Euler(0, mouseDelta.x * cameraAcceleration * Time.fixedDeltaTime, 0);
             Vector2 mouseDelta = nJInputReader.MouseDelta;
+            transform.rotation *= Quaternion.Euler(0, mouseDelta.x * nJInputReader.HorizontalLookSpeed * Time.fixedDeltaTime, 0);
             //mouseDelta *= cameraSensitivity * Time.fixedDeltaTime;
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, mouseDelta.x, 0), cameraAcceleration * Time.fixedDeltaTime);
 
             //mouseDelta.y = Mathf.Clamp(mouseDelta.y, -verticalLookLimit, verticalLookLimit);
             //playerVirtualCameraTransform.localRotation = Quaternion.Lerp(playerVirtualCameraTransform.localRotation, Quaternion.Euler(-mouseDelta.y, 0, 0), cameraAcceleration * Time.fixedDeltaTime);
 
+
+
             // Accumulate rotation over time
-            rotationAmount += mouseDelta.x * cameraSensitivity * Time.fixedDeltaTime;
+            //rotationAmount += mouseDelta.x * cameraSensitivity * Time.fixedDeltaTime;
             // Apply rotation with acceleration
-            Quaternion targetRotation = Quaternion.Euler(0, rotationAmount, 0);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, cameraAcceleration * Time.fixedDeltaTime);
+            //Quaternion targetRotation = Quaternion.Euler(0, rotationAmount, 0);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, cameraAcceleration * Time.fixedDeltaTime);
+
 
             // Clamp vertical rotation
             // Accumulate vertical rotation over time
-            verticalRotationAmount += mouseDelta.y * cameraSensitivity * Time.fixedDeltaTime;
-            verticalRotationAmount = Mathf.Clamp(verticalRotationAmount, -verticalLookLimit, verticalLookLimit);
+            //verticalRotationAmount += mouseDelta.y * cameraSensitivity * Time.fixedDeltaTime;
+            //verticalRotationAmount = Mathf.Clamp(verticalRotationAmount, -verticalLookLimit, verticalLookLimit);
             // Apply vertical rotation with acceleration
-            Quaternion targetVerticalRotation = Quaternion.Euler(-verticalRotationAmount, 0, 0);
-            playerVirtualCameraTransform.localRotation = Quaternion.Lerp(playerVirtualCameraTransform.localRotation, targetVerticalRotation, cameraAcceleration * Time.fixedDeltaTime);
+            //Quaternion targetVerticalRotation = Quaternion.Euler(-verticalRotationAmount, 0, 0);
+            //playerVirtualCameraTransform.localRotation = Quaternion.Lerp(playerVirtualCameraTransform.localRotation, targetVerticalRotation, cameraAcceleration * Time.fixedDeltaTime);
 
         }
 
