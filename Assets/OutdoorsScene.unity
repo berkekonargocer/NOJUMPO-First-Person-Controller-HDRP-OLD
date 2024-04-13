@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 224.09366, g: 124.35695, b: 86.93421, a: 1}
+  m_IndirectSpecularColor: {r: 224.10867, g: 124.35597, b: 86.92872, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1583,13 +1583,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 4290409577891618011}
+  njInputReader: {fileID: 11400000, guid: d858b3bba549a33408c6263b973dc4e2, type: 2}
   playerRigidbody: {fileID: 1060781856595312783}
-  step: 0.04
-  maxStepDistance: 0.1
+  step: 0.02
+  maxStepDistance: 0.08
   rotationStep: 3
   maxRotationStep: 6
   travelLimit: {x: 0.05, y: 0.01, z: 0.05}
-  bobLimit: {x: 0.001, y: 0.001, z: 0.001}
+  bobLimit: {x: 0.0025, y: 0.0025, z: 0.0025}
   multiplier: {x: 1, y: 0.05, z: 1}
 --- !u!114 &2049880823482770805
 MonoBehaviour:
@@ -2104,8 +2105,8 @@ MonoBehaviour:
   HeadbobSwayAngle: 0.75
   HeadbobHeight: 1.5
   HeadbobSideMovement: 0.25
-  JumpLandIntensity: 2
-  Volume: 10
+  JumpLandIntensity: 4
+  Volume: 2
   jumpSound: {fileID: 0}
   landSound: {fileID: 0}
   footStepSounds: []

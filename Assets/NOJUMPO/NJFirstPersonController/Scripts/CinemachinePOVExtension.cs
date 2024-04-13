@@ -9,12 +9,11 @@ namespace NOJUMPO
         // -------------------------------- FIELDS ---------------------------------
         [SerializeField] NJInputReaderSO njInputReader;
 
-        //[SerializeField] Transform playerTransform;
-        [SerializeField] float maxSpeed;
-        [SerializeField] bool acceleratedRotation;
+        //[SerializeField] float maxSpeed;
+        //[SerializeField] bool acceleratedRotation;
 
-        [SerializeField] float accelerationTime = 1.0f;
-        [SerializeField] float decelerationTime = 1.5f;
+        //[SerializeField] float accelerationTime = 1.0f;
+        //[SerializeField] float decelerationTime = 1.5f;
 
         [SerializeField] float maxRotation = 70.0f;
 
