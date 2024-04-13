@@ -1,7 +1,8 @@
-using Nojumpo.FirstPersonController;
+using NOJUMPO.FirstPersonController;
+using NOJUMPO.Utils;
 using UnityEngine;
 
-namespace Nojumpo
+namespace NOJUMPO
 {
     [DisallowMultipleComponent]
     public class SwayAndBob : MonoBehaviour

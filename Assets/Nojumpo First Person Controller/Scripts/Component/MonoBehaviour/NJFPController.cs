@@ -1,42 +1,20 @@
 ﻿using System;
-using System.Collections;
+using NOJUMPO.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using NOJUMPO.InputSystem;
 
-namespace Nojumpo.FirstPersonController
+namespace NOJUMPO.FirstPersonController
 {
     [RequireComponent(typeof(CapsuleCollider)), RequireComponent(typeof(Rigidbody)), AddComponentMenu("Nojumpo First Person Controller")]
     public class NJFPController : MonoBehaviour
     {
+
+        public NJInputReaderSO nJInputReader;
         #region Variables
-
-        #region Look Settings
-
-        //public bool enableCameraMovement = true;
-        //public enum InvertMouseInput { None, X, Y, Both }
-        //public InvertMouseInput MouseInputInversion = InvertMouseInput.None;
-        //public float VerticalRotationRange = 170;
-        //public float MouseSensitivity = 10;
-        //public float MouseSensitivityInternal;
-        //public float FOVToMouseSensitivity = 1;
-        //public float CameraSmoothing = 5f;
-        //public bool lockAndHideCursor;
-        //public Camera playerCamera;
-        //public bool enableCameraShake;
-        //Vector3 _cameraStartingPosition;
-        //float baseCamFOV;
-
-
-        //float _smoothRef;
-        //public Vector3 targetAngles;
-        //Vector3 followAngles;
-        //Vector3 followVelocity;
-        //Vector3 originalRotation;
-
-        #endregion
 
         #region Movement Settings
 
@@ -192,7 +170,7 @@ namespace Nojumpo.FirstPersonController
         void Awake() {
             #region Look Settings - Awake
 
-            //originalRotation = transform.localRotation.eulerAngles;
+            NJUtils.SetCursorState(false);
 
             #endregion
 
@@ -211,21 +189,6 @@ namespace Nojumpo.FirstPersonController
         }
 
         void Start() {
-            #region Look Settings - Start
-
-            //MouseSensitivityInternal = MouseSensitivity;
-            //_cameraStartingPosition = playerCamera.transform.localPosition;
-
-            //if (lockAndHideCursor)
-            //{
-            //    Cursor.lockState = CursorLockMode.Locked;
-            //    Cursor.visible = false;
-            //}
-
-            //baseCamFOV = playerCamera.fieldOfView;
-
-            #endregion
-
             #region Movement Settings - Start
 
             Stamina = MaxStamina;
@@ -255,47 +218,6 @@ namespace Nojumpo.FirstPersonController
         }
 
         void Update() {
-            #region Look Settings - Update
-
-            //if (enableCameraMovement)
-            //{
-            //    float camFOV = playerCamera.fieldOfView;
-            //    float mouseYInput = MouseInputInversion == InvertMouseInput.None || MouseInputInversion == InvertMouseInput.X ? Input.GetAxis("Mouse Y") : -Input.GetAxis("Mouse Y");
-            //    float mouseXInput = MouseInputInversion == InvertMouseInput.None || MouseInputInversion == InvertMouseInput.Y ? Input.GetAxis("Mouse X") : -Input.GetAxis("Mouse X");
-
-            //    if (targetAngles.y > 180)
-            //    {
-            //        targetAngles.y -= 360;
-            //        followAngles.y -= 360;
-            //    }
-            //    else if (targetAngles.y < -180)
-            //    {
-            //        targetAngles.y += 360;
-            //        followAngles.y += 360;
-            //    }
-
-            //    if (targetAngles.x > 180)
-            //    {
-            //        targetAngles.x -= 360;
-            //        followAngles.x -= 360;
-            //    }
-            //    else if (targetAngles.x < -180)
-            //    {
-            //        targetAngles.x += 360;
-            //        followAngles.x += 360;
-            //    }
-
-            //    targetAngles.y += mouseXInput * (MouseSensitivityInternal - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);
-            //    targetAngles.x += mouseYInput * (MouseSensitivityInternal - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);
-            //    targetAngles.y = Mathf.Clamp(targetAngles.y, -0.5f * Mathf.Infinity, 0.5f * Mathf.Infinity);
-            //    targetAngles.x = Mathf.Clamp(targetAngles.x, -0.5f * VerticalRotationRange, 0.5f * VerticalRotationRange);
-            //    followAngles = Vector3.SmoothDamp(followAngles, targetAngles, ref followVelocity, (CameraSmoothing) / 100);
-            //    playerCamera.transform.localRotation = Quaternion.Euler(-followAngles.x + originalRotation.x, 0, 0);
-            //    transform.localRotation = Quaternion.Euler(0, followAngles.y + originalRotation.y, 0);
-            //}
-
-            #endregion
-
             #region Input Settings - Update
 
             _didJump = CanHoldJump ? Input.GetButton("Jump") : Input.GetButtonDown("Jump");
@@ -314,18 +236,17 @@ namespace Nojumpo.FirstPersonController
 
         void FixedUpdate() {
             #region Movement Settings - FixedUpdate
-
-            // bool wasWalking = !_isSprinting;
+            transform.rotation *= Quaternion.Euler(new Vector3(0, nJInputReader.MouseDelta.x * nJInputReader.HorizontalLookSpeed * Time.deltaTime, 0));
 
             if (UseStamina)
             {
-                _isSprinting = Input.GetKey(SprintKey) && !IsCrouching && Stamina > 0 && (Mathf.Abs(_characterRigidbody.velocity.x) > 0.01f || Mathf.Abs(_characterRigidbody.velocity.x) > 0.01f);
+                _isSprinting = Input.GetKey(SprintKey) && !IsCrouching && Stamina > 0 && (Mathf.Abs(_characterRigidbody.velocity.x) > 0.01f);
 
                 if (_isSprinting)
                 {
                     Stamina -= (StaminaDepletionSpeed * 2) * Time.deltaTime;
                 }
-                else if ((!Input.GetKey(SprintKey) || Mathf.Abs(_characterRigidbody.velocity.x) < 0.01f || Mathf.Abs(_characterRigidbody.velocity.x) < 0.01f || IsCrouching) && Stamina < MaxStamina)
+                else if ((!Input.GetKey(SprintKey) || Mathf.Abs(_characterRigidbody.velocity.x) < 0.01f || IsCrouching) && Stamina < MaxStamina)
                 {
                     Stamina += StaminaDepletionSpeed * Time.deltaTime;
                 }
@@ -354,26 +275,14 @@ namespace Nojumpo.FirstPersonController
                 }
             }
 
-
             if (NJFPAdvancedSettings._maxSlopeAngle > 0 && Physics.Raycast(transform.position - new Vector3(0, ((_capsuleCollider.height / 2) * transform.localScale.y) - _capsuleCollider.radius, 0), new Vector3(movementVector.x, -1.5f, movementVector.z), out NJFPAdvancedSettings.surfaceAngleCheck, 1.5f))
             {
                 movementVector = (transform.forward * inputXY.y * MovementSpeed + transform.right * inputXY.x * _walkSpeed) * SlopeCheck();
-
                 if (SlopeCheck() <= 0) { _didJump = false; }
             }
             else
             {
                 movementVector = transform.forward * inputXY.y * MovementSpeed + transform.right * inputXY.x * _walkSpeed;
-            }
-
-
-            if (IsGrounded && NJFPAdvancedSettings.maxStepHeight > 0 && Physics.Raycast(transform.position - new Vector3(0, ((_capsuleCollider.height / 2) * transform.localScale.y) - 0.01f, 0), movementVector, out RaycastHit WT, _capsuleCollider.radius + 0.15f) && Vector3.Angle(WT.normal, Vector3.up) > 88)
-            {
-                if (!Physics.Raycast(transform.position - new Vector3(0, ((_capsuleCollider.height / 2) * transform.localScale.y) - (NJFPAdvancedSettings.maxStepHeight), 0), movementVector, out RaycastHit _, _capsuleCollider.radius + 0.25f))
-                {
-                    // NJFPAdvancedSettings.stairMiniHop = true;     BUG: COMMENTED OUT BECAUSE IT CAUSES SHAKE WHEN YOU STEP ON A HIGHER GROUND 
-                    // transform.position += new Vector3(0, NJFPAdvancedSettings.maxStepHeight * 1.2f, 0);      
-                }
             }
 
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -406,10 +315,6 @@ namespace Nojumpo.FirstPersonController
             else { _capsuleCollider.sharedMaterial = NJFPAdvancedSettings.highFrictionMaterial; }
 
             _characterRigidbody.AddForce(Physics.gravity * (NJFPAdvancedSettings.gravityMultiplier - 1));
-            /* if(fOVKick.useFOVKick && wasWalking == isSprinting && fps_Rigidbody.velocity.magnitude > 0.1f && !isCrouching){
-            StopAllCoroutines();
-            StartCoroutine(wasWalking ? FOVKickOut() : FOVKickIn());
-        } */
 
             if (CharacterCrouchModifiers.useCrouch)
             {
@@ -637,43 +542,6 @@ namespace Nojumpo.FirstPersonController
 
             #endregion
         }
-
-        /*public IEnumerator FOVKickOut()
-    {
-        float t = Mathf.Abs((playerCamera.fieldOfView - fOVKick.fovStart) / fOVKick.FOVKickAmount);
-        while(t < fOVKick.changeTime)
-        {
-            playerCamera.fieldOfView = fOVKick.fovStart + (fOVKick.KickCurve.Evaluate(t / fOVKick.changeTime) * fOVKick.FOVKickAmount);
-            t += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    public IEnumerator FOVKickIn()
-    {
-        float t = Mathf.Abs((playerCamera.fieldOfView - fOVKick.fovStart) / fOVKick.FOVKickAmount);
-        while(t > 0)
-        {
-            playerCamera.fieldOfView = fOVKick.fovStart + (fOVKick.KickCurve.Evaluate(t / fOVKick.changeTime) * fOVKick.FOVKickAmount);
-            t -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        playerCamera.fieldOfView = fOVKick.fovStart;
-    } */
-
-        // public IEnumerator CameraShake(float Duration, float Magnitude) {
-        //     float elapsed = 0;
-        //
-        //     while (elapsed < Duration && enableCameraShake)
-        //     {
-        //         playerCamera.transform.localPosition = Vector3.MoveTowards(playerCamera.transform.localPosition, new Vector3(_cameraStartingPosition.x + Random.Range(-1, 1) * Magnitude, _cameraStartingPosition.y + Random.Range(-1, 1) * Magnitude, _cameraStartingPosition.z), Magnitude * 2);
-        //         yield return new WaitForSecondsRealtime(0.001f);
-        //         elapsed += Time.deltaTime;
-        //         yield return null;
-        //     }
-        //
-        //     playerCamera.transform.localPosition = _cameraStartingPosition;
-        // }
 
         float SlopeCheck() {
             NJFPAdvancedSettings.lastKnownSlopeAngle = Vector3.Angle(NJFPAdvancedSettings.surfaceAngleCheck.normal, Vector3.up);

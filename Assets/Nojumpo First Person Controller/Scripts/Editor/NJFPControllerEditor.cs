@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using NOJUMPO.InputSystem;
 
-namespace Nojumpo.FirstPersonController
+namespace NOJUMPO.FirstPersonController
 {
     [CustomEditor(typeof(NJFPController))]
     public class NJFPControllerEditor : Editor
@@ -102,8 +103,9 @@ namespace Nojumpo.FirstPersonController
             });
             EditorGUILayout.Space();
 
-        #region Camera Setup
+            #region Camera Setup
 
+            _nojumpoFirstPersonController.nJInputReader = (NJInputReaderSO)EditorGUILayout.ObjectField(new GUIContent("Head Transform", "A transform representing the head. The camera should be a child to this transform."), _nojumpoFirstPersonController.nJInputReader, typeof(NJInputReaderSO), true);
             //EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             //GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label)
             //{
@@ -133,9 +135,9 @@ namespace Nojumpo.FirstPersonController
             //GUI.enabled = true;
             //EditorGUILayout.Space();
 
-        #endregion
+            #endregion
 
-        #region Movement Setup
+            #region Movement Setup
 
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             GUILayout.Label("Movement Setup", new GUIStyle(GUI.skin.label)

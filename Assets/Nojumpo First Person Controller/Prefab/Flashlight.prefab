@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5327319774360792538}
   - component: {fileID: 4741361197129550294}
   - component: {fileID: 7558926992124992119}
-  - component: {fileID: 5532450218256310942}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
@@ -106,24 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5532450218256310942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6048461738026455546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21f8abcc44eea84c9e05f02257b7b29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  playerRigidbody: {fileID: 0}
-  step: 0.04
-  maxStepDistance: 0.1
-  rotationStep: 3
-  maxRotationStep: 6
-  travelLimit: {x: 0.05, y: 0.01, z: 0.05}
-  bobLimit: {x: 0.001, y: 0.001, z: 0.001}
-  multiplier: {x: 1, y: 0.05, z: 1}
