@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using NOJUMPO.InputSystem;
+using Cinemachine;
 
 namespace NOJUMPO.FirstPersonController
 {
@@ -106,6 +107,8 @@ namespace NOJUMPO.FirstPersonController
             #region Camera Setup
 
             _nojumpoFirstPersonController.nJInputReader = (NJInputReaderSO)EditorGUILayout.ObjectField(new GUIContent("Head Transform", "A transform representing the head. The camera should be a child to this transform."), _nojumpoFirstPersonController.nJInputReader, typeof(NJInputReaderSO), true);
+            _nojumpoFirstPersonController.playerVirtualCameraTransform = (Transform)EditorGUILayout.ObjectField(new GUIContent("Head Transform", "A transform representing the head. The camera should be a child to this transform."), _nojumpoFirstPersonController.playerVirtualCameraTransform, typeof(Transform), true);
+
             //EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             //GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label)
             //{

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using NOJUMPO.InputSystem;
+using Cinemachine;
 
 namespace NOJUMPO.FirstPersonController
 {
@@ -14,6 +15,13 @@ namespace NOJUMPO.FirstPersonController
     {
 
         public NJInputReaderSO nJInputReader;
+        public Transform playerVirtualCameraTransform;
+
+        public float cameraSensitivity = 50.0f;
+        public float cameraAcceleration = 8.0f;
+
+        public int lookLimitY = 80;
+
         #region Variables
 
         #region Movement Settings
@@ -234,9 +242,18 @@ namespace NOJUMPO.FirstPersonController
             #endregion
         }
 
+
+        void Look() {
+            Vector2 mouseDelta = nJInputReader.MouseDelta;
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, mouseDelta.x, 0), cameraAcceleration * Time.fixedDeltaTime);
+            transform.rotation *= Quaternion.Euler(0, mouseDelta.x * cameraAcceleration * Time.fixedDeltaTime, 0);
+            playerVirtualCameraTransform.localRotation *= Quaternion.Euler(-mouseDelta.y * cameraAcceleration * Time.fixedDeltaTime, 0, 0);
+        }
+
         void FixedUpdate() {
             #region Movement Settings - FixedUpdate
-            transform.rotation *= Quaternion.Euler(new Vector3(0, nJInputReader.MouseDelta.x * nJInputReader.HorizontalLookSpeed * Time.deltaTime, 0));
+            Look();
+            //transform.rotation *= Quaternion.Euler(new Vector3(0, nJInputReader.MouseDelta.x * nJInputReader.HorizontalLookSpeed * Time.fixedDeltaTime, 0));
 
             if (UseStamina)
             {

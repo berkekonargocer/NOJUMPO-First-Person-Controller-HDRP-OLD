@@ -1,6 +1,5 @@
 using Cinemachine;
 using NOJUMPO.InputSystem;
-using NOJUMPO.Utils;
 using UnityEngine;
 
 namespace NOJUMPO
@@ -11,11 +10,16 @@ namespace NOJUMPO
         [SerializeField] NJInputReaderSO njInputReader;
 
         [SerializeField] Transform playerTransform;
+        [SerializeField] float maxSpeed;
+        [SerializeField] bool acceleratedRotation;
+
+        [SerializeField] float accelerationTime = 1.0f;
+        [SerializeField] float decelerationTime = 1.5f;
+
         [SerializeField] float maxRotation = 70.0f;
 
-        [SerializeField] float mouseDeltaX;
         float _verticalLookSpeed;
-        float _horizontalLookSpeed;
+        //float _horizontalLookSpeed;
         
         Vector3 _startingRotation;
 
@@ -26,11 +30,11 @@ namespace NOJUMPO
                 if (stage == CinemachineCore.Stage.Aim)
                 {
                     Vector2 deltaInput = njInputReader.MouseDelta;
-                    mouseDeltaX = deltaInput.x;
-                    _startingRotation.x += deltaInput.x * _horizontalLookSpeed * Time.deltaTime;
+                    //_startingRotation.x += deltaInput.x * _horizontalLookSpeed * Time.deltaTime;
                     _startingRotation.y += deltaInput.y * _verticalLookSpeed * Time.deltaTime;
                     _startingRotation.y = Mathf.Clamp(_startingRotation.y, -maxRotation, maxRotation);
-                    state.RawOrientation = Quaternion.Euler(-_startingRotation.y, _startingRotation.x, 0f);
+                    state.RawOrientation = Quaternion.Euler(-_startingRotation.y, playerTransform.rotation.x, 0f);
+                    
                 }
             }
         }
@@ -40,7 +44,7 @@ namespace NOJUMPO
         protected override void Awake() {
             _startingRotation = transform.localRotation.eulerAngles;
             _verticalLookSpeed = njInputReader.VerticalLookSpeed;
-            _horizontalLookSpeed = njInputReader.HorizontalLookSpeed;
+            //_horizontalLookSpeed = njInputReader.HorizontalLookSpeed;
             base.Awake();
         }
 
