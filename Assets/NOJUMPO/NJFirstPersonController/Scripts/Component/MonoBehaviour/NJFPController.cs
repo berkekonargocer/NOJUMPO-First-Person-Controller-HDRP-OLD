@@ -13,14 +13,7 @@ namespace NOJUMPO.FirstPersonController
     [RequireComponent(typeof(CapsuleCollider)), RequireComponent(typeof(Rigidbody)), AddComponentMenu("Nojumpo First Person Controller")]
     public class NJFPController : MonoBehaviour
     {
-
         public NJInputReaderSO nJInputReader;
-        public Transform playerVirtualCameraTransform;
-
-        float cameraSensitivity = 10.0f;
-        float cameraAcceleration = 5.0f;
-
-        public int verticalLookLimit = 80;
 
         #region Variables
 
@@ -242,40 +235,9 @@ namespace NOJUMPO.FirstPersonController
             #endregion
         }
 
-        float rotationAmount;
-        float verticalRotationAmount;
-        void Look() {
-            Vector2 mouseDelta = nJInputReader.MouseDelta;
-            transform.rotation *= Quaternion.Euler(0, mouseDelta.x * nJInputReader.HorizontalLookSpeed * Time.fixedDeltaTime, 0);
-            //mouseDelta *= cameraSensitivity * Time.fixedDeltaTime;
-            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, mouseDelta.x, 0), cameraAcceleration * Time.fixedDeltaTime);
-
-            //mouseDelta.y = Mathf.Clamp(mouseDelta.y, -verticalLookLimit, verticalLookLimit);
-            //playerVirtualCameraTransform.localRotation = Quaternion.Lerp(playerVirtualCameraTransform.localRotation, Quaternion.Euler(-mouseDelta.y, 0, 0), cameraAcceleration * Time.fixedDeltaTime);
-
-
-
-            // Accumulate rotation over time
-            //rotationAmount += mouseDelta.x * cameraSensitivity * Time.fixedDeltaTime;
-            // Apply rotation with acceleration
-            //Quaternion targetRotation = Quaternion.Euler(0, rotationAmount, 0);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, cameraAcceleration * Time.fixedDeltaTime);
-
-
-            // Clamp vertical rotation
-            // Accumulate vertical rotation over time
-            //verticalRotationAmount += mouseDelta.y * cameraSensitivity * Time.fixedDeltaTime;
-            //verticalRotationAmount = Mathf.Clamp(verticalRotationAmount, -verticalLookLimit, verticalLookLimit);
-            // Apply vertical rotation with acceleration
-            //Quaternion targetVerticalRotation = Quaternion.Euler(-verticalRotationAmount, 0, 0);
-            //playerVirtualCameraTransform.localRotation = Quaternion.Lerp(playerVirtualCameraTransform.localRotation, targetVerticalRotation, cameraAcceleration * Time.fixedDeltaTime);
-
-        }
-
         void FixedUpdate() {
             #region Movement Settings - FixedUpdate
             Look();
-            //transform.rotation *= Quaternion.Euler(new Vector3(0, nJInputReader.MouseDelta.x * nJInputReader.HorizontalLookSpeed * Time.fixedDeltaTime, 0));
 
             if (UseStamina)
             {
@@ -580,6 +542,17 @@ namespace NOJUMPO.FirstPersonController
             }
 
             #endregion
+        }
+
+        void Look() {
+            Vector2 mouseDelta = nJInputReader.MouseDelta;
+            transform.rotation *= Quaternion.Euler(0, mouseDelta.x * nJInputReader.HorizontalLookSpeed * Time.fixedDeltaTime, 0);
+
+            //mouseDelta *= cameraSensitivity * Time.fixedDeltaTime;
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, mouseDelta.x, 0), cameraAcceleration * Time.fixedDeltaTime);
+
+            //mouseDelta.y = Mathf.Clamp(mouseDelta.y, -verticalLookLimit, verticalLookLimit);
+            //playerVirtualCameraTransform.localRotation = Quaternion.Lerp(playerVirtualCameraTransform.localRotation, Quaternion.Euler(-mouseDelta.y, 0, 0), cameraAcceleration * Time.fixedDeltaTime);
         }
 
         float SlopeCheck() {

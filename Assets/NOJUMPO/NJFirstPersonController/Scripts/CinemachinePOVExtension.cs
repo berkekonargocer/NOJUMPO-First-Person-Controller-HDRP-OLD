@@ -2,7 +2,7 @@ using Cinemachine;
 using NOJUMPO.InputSystem;
 using UnityEngine;
 
-namespace NOJUMPO
+namespace NOJUMPO.Extensions
 {
     public class CinemachinePOVExtension : CinemachineExtension
     {

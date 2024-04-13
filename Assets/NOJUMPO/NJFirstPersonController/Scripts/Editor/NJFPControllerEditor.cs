@@ -106,8 +106,7 @@ namespace NOJUMPO.FirstPersonController
 
             #region Camera Setup
 
-            _nojumpoFirstPersonController.nJInputReader = (NJInputReaderSO)EditorGUILayout.ObjectField(new GUIContent("Head Transform", "A transform representing the head. The camera should be a child to this transform."), _nojumpoFirstPersonController.nJInputReader, typeof(NJInputReaderSO), true);
-            _nojumpoFirstPersonController.playerVirtualCameraTransform = (Transform)EditorGUILayout.ObjectField(new GUIContent("Head Transform", "A transform representing the head. The camera should be a child to this transform."), _nojumpoFirstPersonController.playerVirtualCameraTransform, typeof(Transform), true);
+            _nojumpoFirstPersonController.nJInputReader = (NJInputReaderSO)EditorGUILayout.ObjectField(new GUIContent("NJ Input Reader", "Input reader to read the inputs."), _nojumpoFirstPersonController.nJInputReader, typeof(NJInputReaderSO), true);
 
             //EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
             //GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label)
@@ -249,7 +248,7 @@ namespace NOJUMPO.FirstPersonController
             _nojumpoFirstPersonController.SnapHeadjointToCapsul = EditorGUILayout.ToggleLeft(new GUIContent("Snap Head to collider", "Recommended. Determines if the head joint will snap to the top on the capsul Collider, It provides better crouch results."), _nojumpoFirstPersonController.SnapHeadjointToCapsul);
             _nojumpoFirstPersonController.HeadbobFrequency = EditorGUILayout.Slider(new GUIContent("Headbob Frequency (Hz)", "Determines how fast the headbobbing cycle is."), _nojumpoFirstPersonController.HeadbobFrequency, 0.1f, 10);
             _nojumpoFirstPersonController.HeadbobSwayAngle = EditorGUILayout.Slider(new GUIContent("Tilt Angle", "Determines the angle the head will tilt."), _nojumpoFirstPersonController.HeadbobSwayAngle, 0, 10);
-            _nojumpoFirstPersonController.HeadbobHeight = EditorGUILayout.Slider(new GUIContent("Headbob Hight", "Determines the highest point the head will reach in the headbob cycle."), _nojumpoFirstPersonController.HeadbobHeight, 0, 10);
+            _nojumpoFirstPersonController.HeadbobHeight = EditorGUILayout.Slider(new GUIContent("Headbob Height", "Determines the highest point the head will reach in the headbob cycle."), _nojumpoFirstPersonController.HeadbobHeight, 0, 10);
             _nojumpoFirstPersonController.HeadbobSideMovement = EditorGUILayout.Slider(new GUIContent("Headbob Horizontal Movement", "Determines how much vertical movement will occur in the headbob cycle."), _nojumpoFirstPersonController.HeadbobSideMovement, 0, 10);
             _nojumpoFirstPersonController.JumpLandIntensity = EditorGUILayout.Slider(new GUIContent("Jump/Land Jerk Intensity", "Determines the Jerk intensity when jumping and landing if any."), _nojumpoFirstPersonController.JumpLandIntensity, 0, 15);
             GUI.enabled = true;
