@@ -1,12 +1,11 @@
-﻿using System;
+﻿using NOJUMPO.InputSystem;
 using NOJUMPO.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
-using NOJUMPO.InputSystem;
-using Cinemachine;
 
 namespace NOJUMPO.FirstPersonController
 {
