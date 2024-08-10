@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 224.10867, g: 124.35597, b: 86.92872, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -937,10 +936,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   njInputReader: {fileID: 11400000, guid: d858b3bba549a33408c6263b973dc4e2, type: 2}
-  maxSpeed: 0
-  acceleratedRotation: 0
-  accelerationTime: 1
-  decelerationTime: 1.5
   maxRotation: 70
 --- !u!1 &926174468
 GameObject:
@@ -2083,8 +2078,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nJInputReader: {fileID: 11400000, guid: d858b3bba549a33408c6263b973dc4e2, type: 2}
-  playerVirtualCameraTransform: {fileID: 844803572}
-  verticalLookLimit: 80
   PlayerCanMove: 1
   WalkByDefault: 1
   WalkSpeed: 2
@@ -2102,11 +2095,11 @@ MonoBehaviour:
   Head: {fileID: 1563780169045103668}
   SnapHeadjointToCapsul: 1
   HeadbobFrequency: 1.5
-  HeadbobSwayAngle: 0.75
+  HeadbobSwayAngle: 1
   HeadbobHeight: 1.5
   HeadbobSideMovement: 0.25
   JumpLandIntensity: 4
-  Volume: 2
+  Volume: 1
   jumpSound: {fileID: 0}
   landSound: {fileID: 0}
   footStepSounds: []
